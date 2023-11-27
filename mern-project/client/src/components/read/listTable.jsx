@@ -1,11 +1,11 @@
 import React from 'react';
 
-const HomePage = () => {
+const listTable = () => {
      return (
           <div>
-               
+           <listTable></listTable>
           </div>
      );
 };
 
-export default HomePage;
+export default listTable;

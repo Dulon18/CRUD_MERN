@@ -6,10 +6,10 @@ const router = express.Router();
 
 
 // Student
-router.post("/add-student",StudentController.createStudent);
+router.post("/addStudent",StudentController.createStudent);
 router.get("/delete-student/:id",StudentController.deleteStudent);
 router.post("/update-student/:id",StudentController.updateStudent);
-router.get("/read-student",StudentController.readStudents);
+router.get("/read-student",StudentController.readStudent);
 
 
 

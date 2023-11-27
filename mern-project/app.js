@@ -6,9 +6,9 @@ const rateLimit=require('express-rate-limit');
 const helmet=require('helmet');
 const mongoSanitize=require('express-mongo-sanitize');
 const hpp=require('hpp');
-//const cors=require('cors');
+const cors=require('cors');
 const mongoose = require('mongoose');
-//app.use(express.static('client/build'))
+app.use(express.static('client/build'))
 
 
 
@@ -18,7 +18,7 @@ app.use(helmet())
 app.use(mongoSanitize())
 app.use(hpp())
 app.use(express.json({limit:'50mb'}));
-app.use(express.urlencoded({limit:'50mb'}));
+app.use(express.urlencoded({limit:'50mb',extended: true}));
 app.use(bodyParser.json())
 
 
@@ -28,17 +28,18 @@ app.use(limiter);
 
 
 // Database Connection
-let URI="mongodb+srv://<username>:<password>@cluster0.7uslu.mongodb.net/CRUD";
-let OPTION={user:'Dulon',pass:'dulon123',autoIndex:true};
-mongoose.connect(URI,OPTION).then((res)=>{
-    console.log("Success")
+let URI = "mongodb+srv://Dulon:dulon123@cluster0.taxqwuy.mongodb.net/CURD";
+
+mongoose.connect(URI).then((res)=>{
+    console.log("Successfully connected mongoose")
 }).catch((err)=>{
     console.log(err)
 })
 
 
 
-//app.use("/api/v1",router);
+app.use("/api/v1", router);
+
 app.use("*",(req,res)=>{
     res.status(404).json({status:"fail",data:"Not Found"})
 });

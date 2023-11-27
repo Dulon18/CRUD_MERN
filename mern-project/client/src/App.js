@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import React from 'react';
+import {BrowserRouter,Routes,Route} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import ReadPage from './Pages/ReadPage.jsx';
+import CreatePage from './Pages/CreatePage.jsx';
+import UpdatePage from './Pages/UpdatePage.jsx';
+
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<ReadPage/>}/>
+                <Route path="/create" element={<CreatePage/>}/>
+                <Route path="/update" element={<UpdatePage/>}/>
+            </Routes>
+
+        </BrowserRouter>
+    );
+};
 
 export default App;
