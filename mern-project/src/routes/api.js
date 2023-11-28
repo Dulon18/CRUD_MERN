@@ -9,6 +9,7 @@ const router = express.Router();
 router.post("/addStudent",StudentController.createStudent);
 router.get("/delete-student/:id",StudentController.deleteStudent);
 router.post("/update-student/:id",StudentController.updateStudent);
+router.post("/readStudentById/:id",StudentController.readStudentById);
 router.get("/read-student",StudentController.readStudent);
 
 

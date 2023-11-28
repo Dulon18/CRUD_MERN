@@ -45,7 +45,35 @@ export async function readSudentRequest(postBody) {
          return false;
     }
 }
+export async function readStudentById(firstName, lastName, gender,
+     dateOfBirth, nationality, address, email, phone, admissionDate, courses,id){
 
+     let URL = "/api/v1/readProductById/"+id;
+     let postBody = {
+          firstName:firstName,
+          lastName:lastName,
+          gender:gender,
+          dateOfBirth:dateOfBirth,
+          nationality:nationality,
+          address:address,
+          email:email,
+          phone:phone,
+          admissionDate:admissionDate,
+          courses:courses,
+     }
+    try {
+        let res = await axios.post(URL,postBody);
+        if(res.status===200){
+            return true;
+        }
+        else{
+            return  false
+        }
+
+    }catch (e) {
+        return  false
+    }
+ }
 
 export async function updateStudentRequest(firstName, lastName, gender,
      dateOfBirth, nationality, address, email, phone, admissionDate, courses,id){

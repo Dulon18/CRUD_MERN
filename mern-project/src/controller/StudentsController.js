@@ -30,6 +30,22 @@ let result = await StudentModel.find(query, Projection, (err, result) => {
 });
 }
 
+// Read By id
+
+exports.readStudentById = async (req, res) => {
+    let id=req.params.id;
+    let reqBody=req.body;
+    let query={_id:id};
+    try{
+        let result=await StudentModel.updateOne(query,reqBody);
+        res.status(200).json({status:"success",data:result})
+    }
+    catch (err) {
+        res.status(400).json({status:"fail",data:err})
+    }
+}
+
+
 // update
 exports.updateStudent = async (req, res) => {
     let id=req.params.id;

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { isEmpty, SuccessToast, ErrorToast } from "../Helper/validation";
-import Update from "../common/AppNavbar";
+import { Update,Read, readStudentById } from "../Apiservices/CRUDServices";
 
 const updateForm = (props) => {
      let firstName, lastName, gender, dateOfBirth, nationality, address, email, phone, admissionDate, courses = useRef;
@@ -48,12 +48,12 @@ const updateForm = (props) => {
                ErrorToast('Name Requird');
           }
           else {
-               Update(Student_firstName, Student_lastName, Student_gender,
+               Update(props.id,Student_firstName, Student_lastName, Student_gender,
                     Student_address, Student_admissionDate, Student_courses,
                     Student_dateOfBirth, Student_email, Student_nationality,
                     Student_phone).then((Result) => {
                          if (Result === true) {
-                              SuccessToast("Created");
+                              SuccessToast("Updated");
                               firstName.value = "";
                               lastName.value = "";
                               gender.value = "";
@@ -71,6 +71,21 @@ const updateForm = (props) => {
                     })
           }
      }
+     useEffect(() => {
+          readStudentById(props.id).then((Result) => {
+               firstName.value = Result[0]['firstName'];
+               lastName.value = Result[0]['lastName'];
+               gender.value = Result[0]['gender'];
+               dateOfBirth.value = Result[0]['dateOfBirth'];
+               nationality.value = Result[0]['nationality'];
+               address.value = Result[0]['address'];
+               email.value = Result[0]['email'];
+               phone.value = Result[0]['phone'];
+               admissionDate.value = Result[0]['admissionDate'];
+               courses.value = Result[0]['courses'];
+          })
+     })
+
      return (
           <div className='container'>
                <div className="row">
@@ -115,7 +130,7 @@ const updateForm = (props) => {
                          <input type="text" ref={(input) => courses = input} />
                     </div>
                     <div className="col-4">
-                         <button onClick={UpdateData} type="button" className='btn btn-info'>Save</button>
+                         <button onClick={UpdateData} type="button" className='btn btn-info'>Update</button>
                     </div>
                </div>
 
