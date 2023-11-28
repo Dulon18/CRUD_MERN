@@ -9,11 +9,10 @@ const App = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<ReadPage/>}/>
-                <Route path="/create" element={<CreatePage/>}/>
-                <Route path="/update" element={<UpdatePage/>}/>
+                <Route path="/" render={(props) => <ReadPage {...props} key={Date.now()}  />}/>
+                <Route path="/create" render={(props) => <CreatePage {...props} key={Date.now()} />}/>
+                <Route path="/update/:id" render={(props) => <UpdatePage {...props} key={Date.now()} />}/>
             </Routes>
-
         </BrowserRouter>
     );
 };
